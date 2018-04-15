@@ -15,12 +15,12 @@ document.onkeyup = function(event) {
         if (userGuess === computerGuess) {
             wins++;
             userGuessArray.push(userGuess);
+            
         } else {
             losses++;
             numberGames--;
             userGuessArray.push(userGuess);
-            console.log(userGuessArray);
-            console.log(numberGames);
+            
             if (numberGames === 0) {
                 var gameover = "<h3> Game is over! Refresh you browser to start again.</h3>";
                 document.querySelector("#gameover").innerHTML = gameover;
@@ -32,7 +32,7 @@ document.onkeyup = function(event) {
         "<p> Winns : " + wins + "</p>" +
         "<p> Looses : " + losses + "</p>" +
         "<p> Guesses Left : " + numberGames + "</p>" +
-        "<p> Your Guesses so Far : " + userGuessArray + "   " + "</p>";
+        "<p> Your Guesses so Far : " + userGuessArray  + "</p>";
 
     document.querySelector("#game").innerHTML = html;
 };
