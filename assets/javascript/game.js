@@ -1,44 +1,104 @@
-var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", ];
-var wins = 0;
-var losses = 0;
-var userOutput = "";
-var userGuessArray = [];
-var numberGames = 10;
+
+var html="";
+
+var game = {
+    computerChoices: ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", ],
+    wins:0,
+    losses: 0,
+    userOutput : "",
+    userGuessArray : [],
+    numberGames : 10,
+    lengthCompChoicesArray : function(){
+        this.computerChoices.length;
+    },
+    
+    
+    
+}
+
+function startGame(){
+    game.wins=0;
+    game.losses=0;
+    game.userOutput= "";
+    game.userGuessArray= [];
+    game.numberGames =10;
+   
+    document.querySelector("#game").innerHTML = "";
+
+    document.querySelector("#gameover").innerHTML = "";
+    
+};
+
+function printScreen (arr, wins, losses, numberGames){
+    game.userOutput = arr.join(', ');  // output spaces between array elemtns
+
+    html =
+        "<p> Winns : " + wins + "</p>" +
+        "<p> Looses : " + losses + "</p>" +
+        "<p> Guesses Left : " + numberGames + "</p>" +
+        "<p> Your Guesses so Far : " + game.userOutput  + "</p>";
+
+    document.querySelector("#game").innerHTML = html;
+}
 
 document.onkeyup = function(event) {
 
     var userGuess = event.key.toLowerCase();
     var userGuessOptions = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", ];
-    var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+    var computerGuess = game.computerChoices[Math.floor(Math.random() * game.lengthCompChoicesArray)];
 
-    if (userGuessOptions.indexOf(userGuess) > -1) {
+    if (userGuessOptions.indexOf(userGuess) > -1) { //check if userGuessOptions is a letter
         if (userGuess === computerGuess) {
-            wins++;
+            game.wins++;
             // create an array to output user selected leltters on the screen
-            userGuessArray.push(userGuess);
-            
+            game.userGuessArray.push(userGuess);
+            printScreen(game.userGuessArray, game.wins, game.losses, game.numberGames);
+    //         game.userOutput = game.userGuessArray.join(', ');  // output spaces between array elemtns
+
+    // html =
+    //     "<p> Winns : " + game.wins + "</p>" +
+    //     "<p> Looses : " + game.losses + "</p>" +
+    //     "<p> Guesses Left : " + game.numberGames + "</p>" +
+    //     "<p> Your Guesses so Far : " + game.userOutput  + "</p>";
+
+    // document.querySelector("#game").innerHTML = html;
             
         } else {
-            losses++;
-            numberGames--;
-            userGuessArray.push(userGuess);
-            
-            if (numberGames === 0) {
+            game.losses++;
+            game.numberGames--;
+            game.userGuessArray.push(userGuess);
+            printScreen(game.userGuessArray, game.wins, game.losses, game.numberGames);
+    //         game.userOutput = game.userGuessArray.join(', ');  // output spaces between array elemtns
+
+    // html =
+    //     "<p> Winns : " + game.wins + "</p>" +
+    //     "<p> Looses : " + game.losses + "</p>" +
+    //     "<p> Guesses Left : " + game.numberGames + "</p>" +
+    //     "<p> Your Guesses so Far : " + game.userOutput  + "</p>";
+
+    // document.querySelector("#game").innerHTML = html;
+            if (game.numberGames === 0) {
                 var gameover = "<h3> Game is over! Refresh you browser to start again.</h3>";
                 document.querySelector("#gameover").innerHTML = gameover;
+              
+                startGame();
+   
                 
             }
         }
     }
-// output spaces between array elemtns
-            userOutput = userGuessArray.join(', ');
+    
+  
+    // game.userOutput = game.userGuessArray.join(', ');  // output spaces between array elemtns
 
-    var html =
-        "<p> Winns : " + wins + "</p>" +
-        "<p> Looses : " + losses + "</p>" +
-        "<p> Guesses Left : " + numberGames + "</p>" +
-        "<p> Your Guesses so Far : " + userOutput  + "</p>";
+    // html =
+    //     "<p> Winns : " + game.wins + "</p>" +
+    //     "<p> Looses : " + game.losses + "</p>" +
+    //     "<p> Guesses Left : " + game.numberGames + "</p>" +
+    //     "<p> Your Guesses so Far : " + game.userOutput  + "</p>";
 
-    document.querySelector("#game").innerHTML = html;
+    // document.querySelector("#game").innerHTML = html;
+    
+   
 };
 
