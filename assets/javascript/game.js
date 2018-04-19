@@ -30,7 +30,7 @@ function printScreen(arr, wins, losses, numberGames) {
     game.userOutput = arr.join(', '); // output spaces between array elemtns
 
     html =
-        "<p> Wins : " + wins + "</p>" +
+        "<p> Winns : " + wins + "</p>" +
         "<p> Looses : " + losses + "</p>" +
         "<p> Guesses Left : " + numberGames + "</p>" +
         "<p> Your Guesses so Far : " + game.userOutput + "</p>";
@@ -58,14 +58,20 @@ document.onkeyup = function(event) {
             printScreen(game.userGuessArray, game.wins, game.losses, game.numberGames);
 
             if (game.numberGames === 0) {
-                var gameover = "<h3> Game is over! Refresh you browser to start again.</h3>";
+                var gameover = "<h3> Game is over! Press button to start game again. </h3>" + "<button id='clear'>START GAME</button>";
+                var main = $("body");
+                var btns = main.find("#clear");
+                main.on("click", "#clear", function() {
+                    startGame();
+                })
+                
                 document.querySelector("#gameover").innerHTML = gameover;
-
-                startGame();
-
+                
+                
+                
             }
+        
         }
     }
 
 };
-
