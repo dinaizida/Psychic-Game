@@ -30,7 +30,7 @@ function printScreen(arr, wins, losses, numberGames) {
     game.userOutput = arr.join(', '); // output spaces between array elemtns
 
     html =
-        "<p> Winns : " + wins + "</p>" +
+        "<p> Wins : " + wins + "</p>" +
         "<p> Looses : " + losses + "</p>" +
         "<p> Guesses Left : " + numberGames + "</p>" +
         "<p> Your Guesses so Far : " + game.userOutput + "</p>";
