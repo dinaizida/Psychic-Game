@@ -1,42 +1,39 @@
-
-var html="";
+var html = "";
 
 var game = {
     computerChoices: ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", ],
-    wins:0,
+    wins: 0,
     losses: 0,
-    userOutput : "",
-    userGuessArray : [],
-    numberGames : 10,
-    lengthCompChoicesArray : function(){
+    userOutput: "",
+    userGuessArray: [],
+    numberGames: 10,
+    lengthCompChoicesArray: function() {
         this.computerChoices.length;
     },
-    
-    
-    
+
 }
 
-function startGame(){
-    game.wins=0;
-    game.losses=0;
-    game.userOutput= "";
-    game.userGuessArray= [];
-    game.numberGames =10;
-   
+function startGame() {
+    game.wins = 0;
+    game.losses = 0;
+    game.userOutput = "";
+    game.userGuessArray = [];
+    game.numberGames = 10;
+
     document.querySelector("#game").innerHTML = "";
 
     document.querySelector("#gameover").innerHTML = "";
-    
+
 };
 
-function printScreen (arr, wins, losses, numberGames){
-    game.userOutput = arr.join(', ');  // output spaces between array elemtns
+function printScreen(arr, wins, losses, numberGames) {
+    game.userOutput = arr.join(', '); // output spaces between array elemtns
 
     html =
         "<p> Winns : " + wins + "</p>" +
         "<p> Looses : " + losses + "</p>" +
         "<p> Guesses Left : " + numberGames + "</p>" +
-        "<p> Your Guesses so Far : " + game.userOutput  + "</p>";
+        "<p> Your Guesses so Far : " + game.userOutput + "</p>";
 
     document.querySelector("#game").innerHTML = html;
 }
@@ -53,52 +50,22 @@ document.onkeyup = function(event) {
             // create an array to output user selected leltters on the screen
             game.userGuessArray.push(userGuess);
             printScreen(game.userGuessArray, game.wins, game.losses, game.numberGames);
-    //         game.userOutput = game.userGuessArray.join(', ');  // output spaces between array elemtns
 
-    // html =
-    //     "<p> Winns : " + game.wins + "</p>" +
-    //     "<p> Looses : " + game.losses + "</p>" +
-    //     "<p> Guesses Left : " + game.numberGames + "</p>" +
-    //     "<p> Your Guesses so Far : " + game.userOutput  + "</p>";
-
-    // document.querySelector("#game").innerHTML = html;
-            
         } else {
             game.losses++;
             game.numberGames--;
             game.userGuessArray.push(userGuess);
             printScreen(game.userGuessArray, game.wins, game.losses, game.numberGames);
-    //         game.userOutput = game.userGuessArray.join(', ');  // output spaces between array elemtns
 
-    // html =
-    //     "<p> Winns : " + game.wins + "</p>" +
-    //     "<p> Looses : " + game.losses + "</p>" +
-    //     "<p> Guesses Left : " + game.numberGames + "</p>" +
-    //     "<p> Your Guesses so Far : " + game.userOutput  + "</p>";
-
-    // document.querySelector("#game").innerHTML = html;
             if (game.numberGames === 0) {
                 var gameover = "<h3> Game is over! Refresh you browser to start again.</h3>";
                 document.querySelector("#gameover").innerHTML = gameover;
-              
+
                 startGame();
-   
-                
+
             }
         }
     }
-    
-  
-    // game.userOutput = game.userGuessArray.join(', ');  // output spaces between array elemtns
 
-    // html =
-    //     "<p> Winns : " + game.wins + "</p>" +
-    //     "<p> Looses : " + game.losses + "</p>" +
-    //     "<p> Guesses Left : " + game.numberGames + "</p>" +
-    //     "<p> Your Guesses so Far : " + game.userOutput  + "</p>";
-
-    // document.querySelector("#game").innerHTML = html;
-    
-   
 };
 
